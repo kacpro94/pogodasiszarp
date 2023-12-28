@@ -16,13 +16,9 @@ namespace WindowsFormsApp1
             public string icon { get; set; }
 
         }
-        public class main
-        {
-            public double temp;
-        }
         public class list
         {
-            public main temp;
+            
             public long dt { get; set; }
             public List<weather> weather { get; set;}
 
