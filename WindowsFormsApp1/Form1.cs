@@ -103,21 +103,32 @@ namespace WindowsFormsApp1
         {
             using (WebClient web = new WebClient())
             {
+                try
+                {
                     string url = string.Format("https://api.openweathermap.org/data/2.5/forecast?q={0}&exclude=current,minutely,hourly,alerts&appid={1}", textBox1.Text, API);
                     var json = web.DownloadString(url);
                     WeatherForecast.ForecastInfo ForecastInfo = JsonConvert.DeserializeObject<WeatherForecast.ForecastInfo>(json);
-                for(int i =0;i<30;i++)
-                {
-                    FUc FUC = new FUc();
-                    FUC.picWeatherIcon.ImageLocation = "https://openweathermap.org/img/w/" + ForecastInfo.list[i].weather[0].icon + ".png";
-                    FUC.labelMainWeather.Text = ForecastInfo.list[i].weather[0].main;
-                    FUC.labWeatherDescription.Text = ForecastInfo.list[i].weather[0].description;
-                    FUC.labelDT.Text = convertDateTime(ForecastInfo.list[i].dt).DayOfWeek.ToString() +" "+ convertDateTime(ForecastInfo.list[i].dt).TimeOfDay.ToString();
-                    
-                    flp.Controls.Add(FUC);
+                    for (int i = 0; i < 30; i++)
+                    {
+                        FUc FUC = new FUc();
+                        FUC.picWeatherIcon.ImageLocation = "https://openweathermap.org/img/w/" + ForecastInfo.list[i].weather[0].icon + ".png";
+                        FUC.labelMainWeather.Text = ForecastInfo.list[i].weather[0].main;
+                        FUC.labWeatherDescription.Text = ForecastInfo.list[i].weather[0].description;
+                        FUC.labelDT.Text = convertDateTime(ForecastInfo.list[i].dt).DayOfWeek.ToString() + " " + convertDateTime(ForecastInfo.list[i].dt).TimeOfDay.ToString();
 
+                        flp.Controls.Add(FUC);
+
+                    }
                 }
-                    
+                catch (Exception ex)
+                {
+
+                    labelMiasto.Text = "Wprowadzono niepoprawne miasto";
+                    labelMiasto.ForeColor = Color.Red;
+                    LabTemp1.Text = null;
+                    labelWiatr.Text = null;
+                }
+
 
 
             }
