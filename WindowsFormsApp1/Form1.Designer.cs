@@ -35,6 +35,7 @@
             this.labelMiasto = new System.Windows.Forms.Label();
             this.tekst = new System.Windows.Forms.Label();
             this.labelWiatr = new System.Windows.Forms.Label();
+            this.flp = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
             // dupa
@@ -104,11 +105,23 @@
             this.labelWiatr.TabIndex = 6;
             this.labelWiatr.Text = "n/a";
             // 
+            // flp
+            // 
+            this.flp.AutoScroll = true;
+            this.flp.BackColor = System.Drawing.Color.Transparent;
+            this.flp.Location = new System.Drawing.Point(250, 193);
+            this.flp.Name = "flp";
+            this.flp.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.flp.Size = new System.Drawing.Size(489, 233);
+            this.flp.TabIndex = 7;
+            this.flp.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(764, 462);
+            this.Controls.Add(this.flp);
             this.Controls.Add(this.labelWiatr);
             this.Controls.Add(this.tekst);
             this.Controls.Add(this.labelMiasto);
@@ -117,6 +130,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dupa);
             this.Name = "Form1";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -133,6 +147,7 @@
         private System.Windows.Forms.Label labelMiasto;
         private System.Windows.Forms.Label tekst;
         private System.Windows.Forms.Label labelWiatr;
+        private System.Windows.Forms.FlowLayoutPanel flp;
     }
 }
 

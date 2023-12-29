@@ -29,6 +29,7 @@ namespace WindowsFormsApp1
         private void button1_Click(object sender, EventArgs e)
         {
             getWeather();
+            getForecast();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -40,6 +41,8 @@ namespace WindowsFormsApp1
         {
 
         }
+        double lat;
+        double lon;
 
         void getWeather()
         {
@@ -56,6 +59,9 @@ namespace WindowsFormsApp1
                     labelMiasto.ForeColor = Color.Black;
                     labelMiasto.Text = textBox1.Text;
                     labelWiatr.Text = "Wiatr: " + Info.wind.speed.ToString() + "m/s";
+                    lon = Info.coord.lon;
+                    lat = Info.coord.lat;
+
                 }
                 catch (Exception ex)
                 {
@@ -65,8 +71,15 @@ namespace WindowsFormsApp1
                     LabTemp1.Text = null;
                     labelWiatr.Text = null;
                 }
+                
             }
 
+        }
+        DateTime convertDateTime(long sec)
+        {
+            DateTime day = new DateTime(1970,1,1,0,0,0,0, System.DateTimeKind.Utc).ToLocalTime();
+            day = day.AddSeconds(sec).ToLocalTime();
+            return day;
         }
 
         /*void getWeather16()
@@ -83,6 +96,35 @@ namespace WindowsFormsApp1
         }
 
         private void tekst_Click(object sender, EventArgs e)
+        {
+
+        }
+        void getForecast()
+        {
+            using (WebClient web = new WebClient())
+            {
+                    string url = string.Format("https://api.openweathermap.org/data/2.5/forecast?q={0}&exclude=current,minutely,hourly,alerts&appid={1}", textBox1.Text, API);
+                    var json = web.DownloadString(url);
+                    WeatherForecast.ForecastInfo ForecastInfo = JsonConvert.DeserializeObject<WeatherForecast.ForecastInfo>(json);
+                for(int i =0;i<30;i++)
+                {
+                    FUc FUC = new FUc();
+                    FUC.picWeatherIcon.ImageLocation = "https://openweathermap.org/img/w/" + ForecastInfo.list[i].weather[0].icon + ".png";
+                    FUC.labelMainWeather.Text = ForecastInfo.list[i].weather[0].main;
+                    FUC.labWeatherDescription.Text = ForecastInfo.list[i].weather[0].description;
+                    FUC.labelDT.Text = convertDateTime(ForecastInfo.list[i].dt).DayOfWeek.ToString() +" "+ convertDateTime(ForecastInfo.list[i].dt).TimeOfDay.ToString();
+                    
+                    flp.Controls.Add(FUC);
+
+                }
+                    
+
+
+            }
+
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
