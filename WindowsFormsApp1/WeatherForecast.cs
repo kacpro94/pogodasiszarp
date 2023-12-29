@@ -27,5 +27,6 @@ namespace WindowsFormsApp1
         {
             public List<list> list { get; set; }
         }
+
     }
 }
