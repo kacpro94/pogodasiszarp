@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.picWeatherIcon = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelTemp = new System.Windows.Forms.Label();
             this.labelDT = new System.Windows.Forms.Label();
             this.labelMainWeather = new System.Windows.Forms.Label();
             this.labWeatherDescription = new System.Windows.Forms.Label();
@@ -44,19 +44,20 @@
             this.picWeatherIcon.TabIndex = 0;
             this.picWeatherIcon.TabStop = false;
             // 
-            // label1
+            // labelTemp
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(367, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 16);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
+            this.labelTemp.AutoSize = true;
+            this.labelTemp.Location = new System.Drawing.Point(233, 85);
+            this.labelTemp.Name = "labelTemp";
+            this.labelTemp.Size = new System.Drawing.Size(44, 16);
+            this.labelTemp.TabIndex = 1;
+            this.labelTemp.Text = "label1";
+            this.labelTemp.Click += new System.EventHandler(this.label1_Click);
             // 
             // labelDT
             // 
             this.labelDT.AutoSize = true;
-            this.labelDT.Location = new System.Drawing.Point(233, 3);
+            this.labelDT.Location = new System.Drawing.Point(233, 4);
             this.labelDT.Name = "labelDT";
             this.labelDT.Size = new System.Drawing.Size(32, 16);
             this.labelDT.TabIndex = 2;
@@ -66,7 +67,7 @@
             // labelMainWeather
             // 
             this.labelMainWeather.AutoSize = true;
-            this.labelMainWeather.Location = new System.Drawing.Point(233, 32);
+            this.labelMainWeather.Location = new System.Drawing.Point(233, 33);
             this.labelMainWeather.Name = "labelMainWeather";
             this.labelMainWeather.Size = new System.Drawing.Size(39, 16);
             this.labelMainWeather.TabIndex = 3;
@@ -75,7 +76,7 @@
             // labWeatherDescription
             // 
             this.labWeatherDescription.AutoSize = true;
-            this.labWeatherDescription.Location = new System.Drawing.Point(233, 57);
+            this.labWeatherDescription.Location = new System.Drawing.Point(233, 58);
             this.labWeatherDescription.Name = "labWeatherDescription";
             this.labWeatherDescription.Size = new System.Drawing.Size(75, 16);
             this.labWeatherDescription.TabIndex = 4;
@@ -88,11 +89,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.labWeatherDescription);
             this.Controls.Add(this.labelMainWeather);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelTemp);
             this.Controls.Add(this.picWeatherIcon);
             this.Controls.Add(this.labelDT);
             this.Name = "FUc";
-            this.Size = new System.Drawing.Size(457, 166);
+            this.Size = new System.Drawing.Size(417, 125);
             this.Load += new System.EventHandler(this.FUc_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picWeatherIcon)).EndInit();
             this.ResumeLayout(false);
@@ -101,10 +102,10 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label label1;
         public System.Windows.Forms.PictureBox picWeatherIcon;
         public System.Windows.Forms.Label labelDT;
         public System.Windows.Forms.Label labelMainWeather;
         public System.Windows.Forms.Label labWeatherDescription;
+        public System.Windows.Forms.Label labelTemp;
     }
 }

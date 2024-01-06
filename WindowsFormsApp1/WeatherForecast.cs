@@ -9,6 +9,10 @@ namespace WindowsFormsApp1
     public class WeatherForecast
     {
         public double dt { get; set; }
+        public class main
+        {
+            public double temp;
+        }
         public class weather
         { 
             public string main { get;set; }
@@ -20,6 +24,7 @@ namespace WindowsFormsApp1
         {
             
             public long dt { get; set; }
+            public main main { get; set; }
             public List<weather> weather { get; set;}
 
         }

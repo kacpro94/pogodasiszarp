@@ -28,6 +28,7 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            flp.Controls.Clear();
             getWeather();
             getForecast();
         }
@@ -55,7 +56,7 @@ namespace WindowsFormsApp1
                     WeatherInfo.root Info = JsonConvert.DeserializeObject<WeatherInfo.root>(json);
 
 
-                    LabTemp1.Text = "Temperatura: " + (Info.main.temp - 273.15).ToString() + " stopni celcjusza";
+                    LabTemp1.Text = "Temperatura: " + (Math.Round(Info.main.temp - 273.15).ToString()) + " stopni celcjusza";
                     labelMiasto.ForeColor = Color.Black;
                     labelMiasto.Text = textBox1.Text;
                     labelWiatr.Text = "Wiatr: " + Info.wind.speed.ToString() + "m/s";
@@ -103,6 +104,7 @@ namespace WindowsFormsApp1
         {
             using (WebClient web = new WebClient())
             {
+                try { 
                     string url = string.Format("https://api.openweathermap.org/data/2.5/forecast?q={0}&exclude=current,minutely,hourly,alerts&appid={1}", textBox1.Text, API);
                     var json = web.DownloadString(url);
                     WeatherForecast.ForecastInfo ForecastInfo = JsonConvert.DeserializeObject<WeatherForecast.ForecastInfo>(json);
@@ -113,11 +115,20 @@ namespace WindowsFormsApp1
                     FUC.labelMainWeather.Text = ForecastInfo.list[i].weather[0].main;
                     FUC.labWeatherDescription.Text = ForecastInfo.list[i].weather[0].description;
                     FUC.labelDT.Text = convertDateTime(ForecastInfo.list[i].dt).DayOfWeek.ToString() +" "+ convertDateTime(ForecastInfo.list[i].dt).TimeOfDay.ToString();
-                    
+                    FUC.labelTemp.Text = Math.Round(ForecastInfo.list[i].main.temp - 273.15).ToString() + "°C";
                     flp.Controls.Add(FUC);
 
                 }
-                    
+               }
+                catch (Exception ex)
+                {
+
+                    labelMiasto.Text = "Wprowadzono niepoprawne miasto";
+                    labelMiasto.ForeColor = Color.Red;
+                    LabTemp1.Text = null;
+                    labelWiatr.Text = null;
+                }
+
 
 
             }

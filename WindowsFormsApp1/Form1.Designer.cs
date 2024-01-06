@@ -40,7 +40,7 @@
             // 
             // dupa
             // 
-            this.dupa.Location = new System.Drawing.Point(168, 22);
+            this.dupa.Location = new System.Drawing.Point(301, 47);
             this.dupa.Name = "dupa";
             this.dupa.Size = new System.Drawing.Size(161, 41);
             this.dupa.TabIndex = 0;
@@ -50,7 +50,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(17, 41);
+            this.textBox1.Location = new System.Drawing.Point(117, 56);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(132, 22);
             this.textBox1.TabIndex = 1;
@@ -68,7 +68,7 @@
             // 
             this.LabTemp1.AutoSize = true;
             this.LabTemp1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.LabTemp1.Location = new System.Drawing.Point(33, 146);
+            this.LabTemp1.Location = new System.Drawing.Point(33, 133);
             this.LabTemp1.Name = "LabTemp1";
             this.LabTemp1.Size = new System.Drawing.Size(54, 32);
             this.LabTemp1.TabIndex = 3;
@@ -79,7 +79,7 @@
             // 
             this.labelMiasto.AutoSize = true;
             this.labelMiasto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelMiasto.Location = new System.Drawing.Point(361, 79);
+            this.labelMiasto.Location = new System.Drawing.Point(539, 56);
             this.labelMiasto.Name = "labelMiasto";
             this.labelMiasto.Size = new System.Drawing.Size(40, 25);
             this.labelMiasto.TabIndex = 4;
@@ -88,7 +88,7 @@
             // tekst
             // 
             this.tekst.AutoSize = true;
-            this.tekst.Location = new System.Drawing.Point(36, 22);
+            this.tekst.Location = new System.Drawing.Point(137, 37);
             this.tekst.Name = "tekst";
             this.tekst.Size = new System.Drawing.Size(89, 16);
             this.tekst.TabIndex = 5;
@@ -99,7 +99,7 @@
             // 
             this.labelWiatr.AutoSize = true;
             this.labelWiatr.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelWiatr.Location = new System.Drawing.Point(33, 206);
+            this.labelWiatr.Location = new System.Drawing.Point(33, 224);
             this.labelWiatr.Name = "labelWiatr";
             this.labelWiatr.Size = new System.Drawing.Size(54, 32);
             this.labelWiatr.TabIndex = 6;
@@ -109,10 +109,10 @@
             // 
             this.flp.AutoScroll = true;
             this.flp.BackColor = System.Drawing.Color.Transparent;
-            this.flp.Location = new System.Drawing.Point(250, 193);
+            this.flp.Location = new System.Drawing.Point(301, 193);
             this.flp.Name = "flp";
             this.flp.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.flp.Size = new System.Drawing.Size(489, 233);
+            this.flp.Size = new System.Drawing.Size(456, 233);
             this.flp.TabIndex = 7;
             this.flp.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
             // 
@@ -120,6 +120,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(764, 462);
             this.Controls.Add(this.flp);
             this.Controls.Add(this.labelWiatr);
