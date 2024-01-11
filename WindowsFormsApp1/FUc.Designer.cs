@@ -92,6 +92,7 @@
             this.Controls.Add(this.labelTemp);
             this.Controls.Add(this.picWeatherIcon);
             this.Controls.Add(this.labelDT);
+            this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Name = "FUc";
             this.Size = new System.Drawing.Size(417, 125);
             this.Load += new System.EventHandler(this.FUc_Load);

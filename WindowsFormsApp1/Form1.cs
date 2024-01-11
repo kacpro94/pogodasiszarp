@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,7 +24,9 @@ namespace WindowsFormsApp1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            wpiszmiasto.Text = "Krakow";
+            getWeather();
+            getForecast();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -51,18 +54,22 @@ namespace WindowsFormsApp1
             {
                 try
                 {
-                    string url = string.Format("https://api.openweathermap.org/data/2.5/weather?q=" + textBox1.Text + "&appid=" + API);
+                    string url = string.Format("https://api.openweathermap.org/data/2.5/weather?q=" + wpiszmiasto.Text + "&appid=" + API);
                     var json = web.DownloadString(url);
                     WeatherInfo.root Info = JsonConvert.DeserializeObject<WeatherInfo.root>(json);
 
 
-                    LabTemp1.Text = "Temperatura: " + (Math.Round(Info.main.temp - 273.15).ToString()) + " stopni celcjusza";
-                    labelMiasto.ForeColor = Color.Black;
-                    labelMiasto.Text = textBox1.Text;
+                    LabTemp1.Text = "Temperatura: " + (Math.Round(Info.main.temp - 273.15).ToString()) + "°C";
+                    labelMiasto.ForeColor = Color.White;
+                    labelMiasto.Text = "Pogoda w " + wpiszmiasto.Text.ToUpper();
                     labelWiatr.Text = "Wiatr: " + Info.wind.speed.ToString() + "m/s";
                     lon = Info.coord.lon;
                     lat = Info.coord.lat;
-
+                    labelwschod.Text = "Wschod slonca: " + convertDateTime(Info.sys.sunrise).ToShortTimeString();
+                    labelzachod.Text = "Zachod slonca: " + convertDateTime(Info.sys.sunset).ToShortTimeString();
+                    labelcisnienie.Text = "Cisnienie: " + Info.main.pressure;
+                    pictureikona.ImageLocation = "https://openweathermap.org/img/w/" + Info.weather[0].icon + ".png";
+                    
                 }
                 catch (Exception ex)
                 {
@@ -71,6 +78,10 @@ namespace WindowsFormsApp1
                     labelMiasto.ForeColor = Color.Red;
                     LabTemp1.Text = null;
                     labelWiatr.Text = null;
+                    labelwschod.Text = null;
+                    labelzachod.Text = null;
+                    labelcisnienie.Text = null;
+                    pictureikona.ImageLocation = null;
                 }
                 
             }
@@ -102,10 +113,11 @@ namespace WindowsFormsApp1
         }
         void getForecast()
         {
+            
             using (WebClient web = new WebClient())
             {
                 try { 
-                    string url = string.Format("https://api.openweathermap.org/data/2.5/forecast?q={0}&exclude=current,minutely,hourly,alerts&appid={1}", textBox1.Text, API);
+                    string url = string.Format("https://api.openweathermap.org/data/2.5/forecast?q={0}&exclude=current,minutely,hourly,alerts&appid={1}", wpiszmiasto.Text, API);
                     var json = web.DownloadString(url);
                     WeatherForecast.ForecastInfo ForecastInfo = JsonConvert.DeserializeObject<WeatherForecast.ForecastInfo>(json);
                 for(int i =0;i<30;i++)
@@ -115,7 +127,7 @@ namespace WindowsFormsApp1
                     FUC.labelMainWeather.Text = ForecastInfo.list[i].weather[0].main;
                     FUC.labWeatherDescription.Text = ForecastInfo.list[i].weather[0].description;
                     FUC.labelDT.Text = convertDateTime(ForecastInfo.list[i].dt).DayOfWeek.ToString() +" "+ convertDateTime(ForecastInfo.list[i].dt).TimeOfDay.ToString();
-                    FUC.labelTemp.Text = Math.Round(ForecastInfo.list[i].main.temp - 273.15).ToString() + "°C";
+                    FUC.labelTemp.Text = "Temp: "+(Math.Round(ForecastInfo.list[i].main.temp - 273.15)) + "°C";
                     flp.Controls.Add(FUC);
 
                 }
@@ -127,6 +139,7 @@ namespace WindowsFormsApp1
                     labelMiasto.ForeColor = Color.Red;
                     LabTemp1.Text = null;
                     labelWiatr.Text = null;
+
                 }
 
 
@@ -136,6 +149,11 @@ namespace WindowsFormsApp1
         }
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void labelMiasto_Click(object sender, EventArgs e)
         {
 
         }
